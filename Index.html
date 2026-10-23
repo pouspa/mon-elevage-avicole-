@@ -86,6 +86,15 @@
 <footer>Données conservées localement sur cet appareil</footer>
 <div id="toast"></div>
 <script src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Application hors connexion activée."))
+      .catch(error => console.error("Erreur service worker :", error));
+  });
+}
+</script>
 </body>
 </html>
  
