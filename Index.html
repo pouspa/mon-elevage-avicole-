@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173d2b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<title>Mon Élevage Avicole</title>
+</head>
+<body>
+<header>
+<span class="logo">🐔</span>
+<div>
+<h1>Mon Élevage Avicole</h1>
+<p>Gestion simple de ton élevage</p>
+</div>
+</header>
+<main>
+<div class="stats">
+<div>Poulets vivants<strong id="live">0</strong></div>
+<div>Lots actifs<strong id="lotsnum">0</strong></div>
+<div>Dépenses<strong id="exp">0 F</strong></div>
+<div>Recettes<strong id="inc">0 F</strong></div>
+</div>
+<nav>
+<button class="active" data-page="lots">Lots</button>
+<button data-page="mouv">Mouvements</button>
+<button data-page="finance">Finances</button>
+<button data-page="backup">Sauvegarde</button>
+</nav>
+<section id="lots">
+<h2>Mes lots</h2>
+<form id="lotform" class="card">
+<h3>Créer un lot</h3>
+<label>Nom du lot<input id="name" required placeholder="Ex. Lot de septembre"></label>
+<div class="row">
+<label>Nombre (max. 100)<input id="count" type="number" min="1" max="100" value="50" required></label>
+<label>Date d'arrivée<input id="date" type="date" required></label>
+</div>
+<button class="primary">Ajouter le lot</button>
+</form>
+<div id="lotlist"></div>
+</section>
+<section id="mouv" hidden>
+<h2>Mouvements</h2>
+<form id="moveform" class="card">
+<label>Lot<select id="lotselect" required></select></label>
+<label>Type<select id="type"><option value="mort">Mortalité</option><option value="sale">Vente de poulets</option><option value="add">Ajout de poulets</option></select></label>
+<div class="row">
+<label>Nombre<input id="qty" type="number" min="1" value="1" required></label>
+<label>Date<input id="mdate" type="date" required></label>
+</div>
+<label>Note (facultatif)<input id="note" maxlength="100"></label>
+<button class="primary">Enregistrer</button>
+</form>
+<div id="movelist"></div>
+</section>
+<section id="finance" hidden>
+<h2>Finances</h2>
+<form id="finform" class="card">
+<label>Type<select id="ftype"><option value="expense">Dépense</option><option value="income">Recette</option></select></label>
+<label>Catégorie<select id="cat"><option>Achat des poussins</option><option>Provende</option><option>Médicaments / santé</option><option>Matériel</option><option>Vente de poulets</option><option>Autre</option></select></label>
+<div class="row">
+<label>Montant (FCFA)<input id="amount" type="number" min="1" required></label>
+<label>Date<input id="fdate" type="date" required></label>
+</div>
+<label>Note (facultatif)<input id="fnote" maxlength="100"></label>
+<button class="primary">Enregistrer l'opération</button>
+</form>
+<div class="card"><span>Solde provisoire</span><strong id="balance">0 F</strong></div>
+<div id="finlist"></div>
+</section>
+<section id="backup" hidden>
+<h2>Sauvegarde</h2>
+<div class="card">
+<p>Les données restent sur ce téléphone. Exporte régulièrement une copie pour éviter de les perdre.</p>
+<button id="export" class="primary" type="button">Télécharger ma sauvegarde</button>
+<label>Restaurer une sauvegarde JSON<input id="import" type="file" accept=".json,application/json"></label>
+<button id="clear" class="danger" type="button">Effacer toutes les données</button>
+</div>
+<div class="card"><b>Important</b><p>Cette version est un prototype à tester. Les chiffres dépendent des informations saisies. Sauvegarde tes données régulièrement.</p></div>
+</section>
+</main>
+<footer>Données conservées localement sur cet appareil</footer>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
+ 
